@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: sample-django-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend.settings
+      - key: SECRET_KEY
+        value: django-insecure-&zurat!$3ujrucaq#_-7xw*r@xh%_2lnf1cop#98t6w21vf!_-
