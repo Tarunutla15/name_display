@@ -5,11 +5,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-&zurat!$3ujrucaq#_-7xw*r@xh%_2lnf1cop#98t6w21vf!_-'
 SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -24,6 +19,9 @@ ALLOWED_HOSTS = [
     "name-display.onrender.com"
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
 
 # Application definition
 
@@ -36,9 +34,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     "rest_framework",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
